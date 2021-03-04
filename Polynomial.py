@@ -1,3 +1,6 @@
+import math
+
+
 class Polynomial:
     degree = -1
     __coefficients = {}
@@ -86,3 +89,19 @@ class Polynomial:
         except KeyError:
             self.coefficients[power] = 0
             return 0
+
+    def solve(self):
+        if self.degree == 1:
+            return self.get_coefficient(1)
+        elif self.degree == 2:
+            return self.quadraticSolution()
+
+    def quadraticSolution(self):
+        a = self.get_coefficient(3)
+        b = self.get_coefficient(2)
+        c = self.get_coefficient(1)
+        determinant = (b ** 2) - (4 * a * c)
+        if determinant < 0:
+            return
+        else:
+            return (-b + (math.sqrt(determinant))) / 2 * a, (-b - (math.sqrt(determinant))) / 2 * a

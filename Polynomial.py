@@ -91,15 +91,22 @@ class Polynomial:
             return 0
 
     def solve(self):
-        if self.degree == 1:
-            return self.get_coefficient(1)
+        if self.degree == 0:
+            return self.get_coefficient(0)
+        elif self.degree == 1:
+            return self.linearSolution()
         elif self.degree == 2:
             return self.quadraticSolution()
+        elif self.degree > 2:
+            raise ValueError("Na")
+
+    def linearSolution(self):
+        return (-self.get_coefficient(0))/self.get_coefficient(1)
 
     def quadraticSolution(self):
-        a = self.get_coefficient(3)
-        b = self.get_coefficient(2)
-        c = self.get_coefficient(1)
+        a = self.get_coefficient(2)
+        b = self.get_coefficient(1)
+        c = self.get_coefficient(0)
         determinant = (b ** 2) - (4 * a * c)
         if determinant < 0:
             return

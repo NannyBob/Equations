@@ -90,7 +90,8 @@ class Polynomial:
             self.coefficients[power] = 0
             return 0
 
-    def solve(self):
+    def solve(self,to=0):
+        self.coefficients[0] = self.get_coefficient(0)-to
         if self.degree == 0:
             return self.get_coefficient(0)
         elif self.degree == 1:
